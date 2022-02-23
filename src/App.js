@@ -27,9 +27,11 @@ class App extends Component {
   render () {
     return (
     <div>
-      <form>
-        <textarea value={this.state.value} onChange={this.handleChange}></textarea>
-        <button>Submit</button>
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          <textarea value={this.state.value} onChange={this.handleChange}></textarea>
+        </label>
+        <input type="submit" value="Submit"></input>
       </form>
 
       {this.state.tasks.map((task, id) => {
