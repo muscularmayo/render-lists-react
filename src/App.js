@@ -20,6 +20,7 @@ class App extends Component {
 
   handleSubmit(event) {
     this.setState({tasks: [...this.state.tasks, this.state.value]})
+    this.setState({value:''})
     event.preventDefault();
 
   }
@@ -33,12 +34,15 @@ class App extends Component {
         </label>
         <input type="submit" value="Submit"></input>
       </form>
+      <ul>
+        {this.state.tasks.map((task, id) => {
+          return (
+            //<div key={id}>{task}</div>
+            <Overview key={id} value={task}/>
+          )
+        })}
+      </ul>
 
-      {this.state.tasks.map((task, id) => {
-        return (
-          <div key={id}>{task}</div>
-        )
-      })}
     </div>
     );
   }
