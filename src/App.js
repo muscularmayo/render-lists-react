@@ -1,9 +1,11 @@
-import './App.css';
+import Overview from './components/Overview.js'
+import React, { Component }
 
+//handle input field and logic
 function App() {
   return (
     <div className="App">
-      <h1>hello world</h1>
+      <Overview title="wattup"/>
     </div>
   );
 }
