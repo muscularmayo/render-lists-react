@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DeleteButton from './DeleteButton.js'
 
 //render our task elements from what the user gives us in the form
 
@@ -9,6 +10,8 @@ export default class Overview extends Component {
   // }
 
   render () {
-    return (<li key={this.props.id}>{this.props.value}</li>);
+    return (
+      <li>{this.props.value}</li>
+    );
   }
 }

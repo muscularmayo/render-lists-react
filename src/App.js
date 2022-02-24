@@ -1,5 +1,6 @@
-import Overview from './components/Overview.js'
 import React, { Component } from 'react';
+import Overview from './components/Overview.js'
+import DeleteButton from './components/DeleteButton.js'
 import './app.css';
 
 //handle input field and logic
@@ -10,9 +11,9 @@ class App extends Component {
       value: '',
       tasks: [],
   };
-
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   handleChange(event) {
@@ -29,6 +30,12 @@ class App extends Component {
 
   }
 
+  handleDelete(event) {
+    this.setState({
+      tasks: [...this.state.tasks, ]
+    })
+  }
+
   render () {
     return (
     <div>
@@ -42,8 +49,12 @@ class App extends Component {
       <ul>
         {this.state.tasks.map((task, id) => {
           return (
+            <div key={id}>
+              <Overview value={task}/>
+              <DeleteButton />
+            </div>
+
             //<div key={id}>{task}</div>
-            <Overview key={id} value={task}/>
           )
         })}
       </ul>
