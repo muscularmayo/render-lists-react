@@ -4,7 +4,9 @@ import './deletebutton.css'
 export default class DeleteButton extends Component {
   render() {
     return (
-      <button>Delete</button>
+      <span>
+        <button>Delete</button>
+      </span>
     )
   }
 }

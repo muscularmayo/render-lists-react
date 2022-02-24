@@ -22,7 +22,7 @@ class App extends Component {
 
   handleSubmit(event) {
     this.setState({
-      tasks: [...this.state.tasks, this.state.value],
+      tasks: [...this.state.tasks, (this.state.tasks.length + ': ' + this.state.value)],
       value: '',
     })
 
