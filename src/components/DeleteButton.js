@@ -4,14 +4,12 @@ import './deletebutton.css'
 export default class DeleteButton extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      index: this.props.index
-    }
+
     this.handleClick = this.handleClick.bind(this)
   }
 
   handleClick() {
-    this.props.handleDelete(this.state.index)
+    this.props.handleDelete(this.props.index)
   }
 
 
