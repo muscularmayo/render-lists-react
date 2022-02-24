@@ -9,8 +9,8 @@ class App extends Component {
     super(props)
     this.state = {
       value: '',
-      tasks: [],
-  };
+      tasks: []
+    };
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
@@ -22,7 +22,7 @@ class App extends Component {
 
   handleSubmit(event) {
     this.setState({
-      tasks: [...this.state.tasks, (this.state.tasks.length + ': ' + this.state.value)],
+      tasks: [...this.state.tasks, this.state.value],
       value: '',
     })
 
@@ -30,10 +30,10 @@ class App extends Component {
 
   }
 
-  handleDelete(event) {
-    this.setState({
-      tasks: [...this.state.tasks, ]
-    })
+  handleDelete(index) {
+    const newTasksState = [...this.state.tasks]
+    newTasksState.splice(index,1)
+    this.setState({tasks: newTasksState})
   }
 
   render () {
@@ -51,7 +51,7 @@ class App extends Component {
           return (
             <div key={id}>
               <Overview value={task}/>
-              <DeleteButton />
+              <DeleteButton index={id} handleDelete={this.handleDelete}/>
             </div>
 
             //<div key={id}>{task}</div>

@@ -10,7 +10,7 @@ export default class Overview extends Component {
 
   render () {
     return (
-      <span>{this.props.value}</span>
+      <span >{this.props.value}</span>
     );
   }
 }
