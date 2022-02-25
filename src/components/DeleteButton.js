@@ -16,7 +16,7 @@ export default class DeleteButton extends Component {
   render() {
     return (
       <span>
-        <button index={this.props.index} onClick={this.handleClick}>Delete</button>
+        <button onClick={this.handleClick}>Delete</button>
       </span>
     )
   }

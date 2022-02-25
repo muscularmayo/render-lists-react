@@ -10,7 +10,8 @@ class App extends Component {
     super(props)
     this.state = {
       value: '',
-      tasks: []
+      tasks: [],
+      tasksInEdit: [],
     };
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -23,18 +24,27 @@ class App extends Component {
   }
 
   handleSubmit(event) {
+    if(this.state.value === '') {
+      event.preventDefault();
+      return;
+    }
+
     this.setState({
       tasks: [...this.state.tasks, this.state.value],
       value: '',
+      tasksInEdit: [...this.state.tasksInEdit, false]
     })
 
     event.preventDefault();
   }
 
   handleEdit(index, value) {
-    const newTasksState = [...this.state.tasks];
-    newTasksState[index] = value;
-    this.setState({tasks: newTasksState})
+    const newTasksInEdit = [...this.state.tasksInEdit];
+    newTasksInEdit[index] = true;
+    this.setState({tasksInEdit: newTasksInEdit})
+    // const newTasksState = [...this.state.tasks];
+    // newTasksState[index] = value;
+    // this.setState({tasks: newTasksState})
   }
 
   handleDelete(index) {
@@ -55,15 +65,15 @@ class App extends Component {
       <div>Tasks: </div>
       <ul>
         {this.state.tasks.map((task, id) => {
-          return (
+            return(
             <div key={id}>
-              <Overview value={task}/>
+              <Overview inEdit={this.state.tasksInEdit[id]} value={task}/>
               <DeleteButton index={id} handleDelete={this.handleDelete}/>
               <EditButton index={id} handleEdit={this.handleEdit}/>
             </div>
 
             //<div key={id}>{task}</div>
-          )
+            )
         })}
       </ul>
 
