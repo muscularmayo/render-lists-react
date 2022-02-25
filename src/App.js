@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Overview from './components/Overview.js'
 import DeleteButton from './components/DeleteButton.js'
+import EditButton from './components/EditButton.js'
 import './app.css';
 
 //handle input field and logic
@@ -14,6 +15,7 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
+    this.handleEdit = this.handleEdit.bind(this);
   }
 
   handleChange(event) {
@@ -27,7 +29,12 @@ class App extends Component {
     })
 
     event.preventDefault();
+  }
 
+  handleEdit(index, value) {
+    const newTasksState = [...this.state.tasks];
+    newTasksState[index] = value;
+    this.setState({tasks: newTasksState})
   }
 
   handleDelete(index) {
@@ -52,6 +59,7 @@ class App extends Component {
             <div key={id}>
               <Overview value={task}/>
               <DeleteButton index={id} handleDelete={this.handleDelete}/>
+              <EditButton index={id} handleEdit={this.handleEdit}/>
             </div>
 
             //<div key={id}>{task}</div>
