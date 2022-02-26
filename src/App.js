@@ -17,6 +17,7 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
     this.handleEdit = this.handleEdit.bind(this);
+    this.handleEditSubmit = this.handleEditSubmit.bind(this)
   }
 
   handleChange(event) {
@@ -38,19 +39,29 @@ class App extends Component {
     event.preventDefault();
   }
 
-  handleEdit(index, value) {
+  handleEdit(index) {
     const newTasksInEdit = [...this.state.tasksInEdit];
-    newTasksInEdit[index] = true;
+    newTasksInEdit[index] = !newTasksInEdit[index];
     this.setState({tasksInEdit: newTasksInEdit})
-    // const newTasksState = [...this.state.tasks];
-    // newTasksState[index] = value;
     // this.setState({tasks: newTasksState})
+  }
+
+  handleEditSubmit(index,value) {
+    //here we will change the task array @ index to the new value here
+    const newTasksState = [...this.state.tasks]
+    newTasksState[index] = value;
+    this.setState({tasks: newTasksState})
   }
 
   handleDelete(index) {
     const newTasksState = [...this.state.tasks]
+    const newTasksInEditState = [...this.state.tasksInEdit]
     newTasksState.splice(index,1)
-    this.setState({tasks: newTasksState})
+    newTasksInEditState.splice(index,1)
+    this.setState({
+      tasks: newTasksState,
+      tasksInEdit: newTasksInEditState,
+    })
   }
 
   render () {
@@ -67,7 +78,7 @@ class App extends Component {
         {this.state.tasks.map((task, id) => {
             return(
             <div key={id}>
-              <Overview inEdit={this.state.tasksInEdit[id]} value={task}/>
+              <Overview index={id} handleEditSubmit={this.handleEditSubmit} inEdit={this.state.tasksInEdit[id]} value={task}/>
               <DeleteButton index={id} handleDelete={this.handleDelete}/>
               <EditButton index={id} handleEdit={this.handleEdit}/>
             </div>
