@@ -13,8 +13,9 @@ export default class Overview extends Component {
   }
 
   handleChange(event) {
-    this.props.handleEditSubmit(this.props.index, this.state.value)
     this.setState({value: event.target.value})
+    this.props.handleEditSubmit(this.props.index, event.target.value)
+
 
 
   }
